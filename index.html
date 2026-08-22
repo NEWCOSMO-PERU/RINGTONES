@@ -801,7 +801,7 @@
 <header>
     <img src="logo.png" class="brand-logo" alt="Logo Full Tonos">
     <h1>FULL TONOS PREMIUM</h1>
-    <p>Escucha las muestras gratis online. Desbloquea el acceso completo para descargar todo el catálogo original en Alta Definición para tu celular.</p>
+    <p>Escucha las muestras de 15 segundos online. Desbloquea el acceso completo para descargar todo el catálogo original en Alta Definición para tu celular.</p>
     <a href="#tonos" class="btn"><i class="fa-solid fa-bolt"></i> Explorar Catálogo</a>
 </header>
 
@@ -809,7 +809,7 @@
     <section id="tonos">
         <div class="section-title">
             <h2>🔥 Catálogo de Muestras</h2>
-            <p>Los audios de abajo son demostraciones cortas de 15 segundos. El pack completo incluye versiones limpias y completas.</p>
+            <p>Los audios de abajo son demostraciones cortas. El pack completo en Mega incluye versiones limpias y completas.</p>
         </div>
 
         <!-- Pestañas de Categorías -->
@@ -826,7 +826,7 @@
     <section id="descarga-vip">
         <div class="premium">
             <h2><i class="fa-solid fa-star" style="color: var(--accent);"></i> ACCESO ILIMITADO VIP</h2>
-            <p>Con un único pago obtienes un <strong>enlace privado directo (Google Drive/Mega)</strong> para descargar todos los tonos de la web de manera instantánea.</p>
+            <p>Con un único pago obtienes tu <strong>enlace privado de Mega</strong> para descargar todos los tonos completos de la web de manera instantánea.</p>
             
             <div class="precio">
                 S/ 4
@@ -858,7 +858,7 @@
         <div class="faq-container">
             <div class="faq">
                 <button class="faq-trigger" onclick="toggleFaq(this)">
-                    ¿El enlace incluye todos los tonos escuchados arriba?
+                    ¿El enlace de Mega incluye todos los tonos escuchados arriba?
                     <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div class="faq-content">
@@ -934,20 +934,20 @@
         renderRingtones('todos');
     });
 
-    // --- BASE DE DATOS DE TONOS CON CATEGORÍAS ---
+    // --- BASE DE DATOS DE TONOS (Apunta a la carpeta /audio/ de tu GitHub) ---
     const ringtonesData = [
-        { id: 1, title: 'Risa de Troll Viral', category: 'graciosos', file: 'tono1.mp3', duration: '0:15 seg', quality: '320 kbps' },
-        { id: 2, title: 'Anime Opening Epic', category: 'anime', file: 'tono2.mp3', duration: '1:58 min', quality: '320 kbps' },
-        { id: 3, title: 'Alerta Futurista Sci-Fi', category: 'sonidos', file: 'tono3.mp3', duration: '0:12 seg', quality: 'Ultra HQ' },
-        { id: 4, title: 'Notificación Meme Cat', category: 'graciosos', file: 'notificacion.mp3', duration: '0:08 seg', quality: 'Ultra HQ' },
-        { id: 5, title: 'Ninja Run Theme', category: 'anime', file: 'tono4.mp3', duration: '2:05 min', quality: '320 kbps' },
-        { id: 6, title: 'Beep Cristalino Alarma', category: 'sonidos', file: 'alarma1.mp3', duration: '0:30 seg', quality: 'Ultra HQ' },
-        { id: 7, title: 'Broma Telefónica', category: 'graciosos', file: 'tono5.mp3', duration: '1:45 min', quality: '320 kbps' },
-        { id: 8, title: 'Samurai Katana Hit', category: 'anime', file: 'tono6.mp3', duration: '0:10 seg', quality: 'Ultra HQ' },
-        { id: 9, title: 'Efecto Láser Cohete', category: 'sonidos', file: 'tono7.mp3', duration: '0:06 seg', quality: 'Ultra HQ' },
-        { id: 10, title: 'Fail Trompeta Triste', category: 'graciosos', file: 'notificacion2.mp3', duration: '0:05 seg', quality: 'Ultra HQ' },
-        { id: 11, title: 'Tokyo Night Cyber', category: 'anime', file: 'tono8.mp3', duration: '1:50 min', quality: '320 kbps' },
-        { id: 12, title: 'Timbre de Recepción', category: 'sonidos', file: 'tono9.mp3', duration: '0:04 seg', quality: 'Ultra HQ' }
+        { id: 1, title: 'Risa de Troll Viral', category: 'graciosos', file: 'tono1.mp3', quality: '320 kbps' },
+        { id: 2, title: 'Anime Opening Epic', category: 'anime', file: 'tono2.mp3', quality: '320 kbps' },
+        { id: 3, title: 'Alerta Futurista Sci-Fi', category: 'sonidos', file: 'tono3.mp3', quality: 'Ultra HQ' },
+        { id: 4, title: 'Notificación Meme Cat', category: 'graciosos', file: 'notificacion.mp3', quality: 'Ultra HQ' },
+        { id: 5, title: 'Ninja Run Theme', category: 'anime', file: 'tono4.mp3', quality: '320 kbps' },
+        { id: 6, title: 'Beep Cristalino Alarma', category: 'sonidos', file: 'alarma1.mp3', quality: 'Ultra HQ' },
+        { id: 7, title: 'Broma Telefónica', category: 'graciosos', file: 'tono5.mp3', quality: '320 kbps' },
+        { id: 8, title: 'Samurai Katana Hit', category: 'anime', file: 'tono6.mp3', quality: 'Ultra HQ' },
+        { id: 9, title: 'Efecto Láser Cohete', category: 'sonidos', file: 'tono7.mp3', quality: 'Ultra HQ' },
+        { id: 10, title: 'Fail Trompeta Triste', category: 'graciosos', file: 'notificacion2.mp3', quality: 'Ultra HQ' },
+        { id: 11, title: 'Tokyo Night Cyber', category: 'anime', file: 'tono8.mp3', quality: '320 kbps' },
+        { id: 12, title: 'Timbre de Recepción', category: 'sonidos', file: 'tono9.mp3', quality: 'Ultra HQ' }
     ];
 
     const gridContainer = document.getElementById('tonos-grid');
@@ -965,7 +965,7 @@
                     <span class="badge-preview"><i class="fa-solid fa-bolt"></i> ${track.category.toUpperCase()}</span>
                     <h3>${track.title}</h3>
                     <div class="track-info">
-                        <span><i class="fa-solid fa-clock"></i> ${track.duration}</span>
+                        <span><i class="fa-solid fa-clock"></i> Muestra 0:15s</span>
                         <span><i class="fa-solid fa-wave-square"></i> ${track.quality}</span>
                     </div>
                     
@@ -981,11 +981,11 @@
                             </div>
                             <div class="time-meta">
                                 <span id="time${track.id}">0:00</span>
-                                <span>${track.duration}</span>
+                                <span>0:15</span>
                             </div>
                         </div>
                     </div>
-                    <a href="#descarga-vip" class="lock-btn"><i class="fa-solid fa-unlock"></i> Desbloquear Tono</a>
+                    <a href="#descarga-vip" class="lock-btn"><i class="fa-solid fa-unlock"></i> Desbloquear Tono Completo</a>
                 </div>
             `;
             gridContainer.insertAdjacentHTML('beforeend', cardHTML);
@@ -993,11 +993,9 @@
     }
 
     function filterCategory(category, btn) {
-        // Cambiar estado activo de los botones
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        // Detener audio activo si se cambia de categoría
         if (currentAudio) {
             currentAudio.pause();
             if (currentButton) currentButton.innerHTML = '<i class="fa-solid fa-play"></i>';
@@ -1007,7 +1005,7 @@
         renderRingtones(category);
     }
 
-    // --- CONTROLADOR DE AUDIO ---
+    // --- CONTROLADOR DE AUDIO (Limitado a 15 segundos automáticos) ---
     let currentAudio = null;
     let currentButton = null;
     let progressInterval = null;
@@ -1031,14 +1029,22 @@
             currentButton = btn;
 
             progressInterval = setInterval(() => {
-                if (audio.duration) {
-                    const percentage = (audio.currentTime / audio.duration) * 100;
-                    progressBar.style.width = percentage + '%';
-                    
-                    let mins = Math.floor(audio.currentTime / 60);
-                    let secs = Math.floor(audio.currentTime % 60);
-                    timeDisplay.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                if (audio.currentTime >= 15) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                    btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                    clearInterval(progressInterval);
+                    progressBar.style.width = '0%';
+                    timeDisplay.innerText = '0:00';
+                    return;
                 }
+
+                const percentage = (audio.currentTime / 15) * 100;
+                progressBar.style.width = percentage + '%';
+                
+                let mins = Math.floor(audio.currentTime / 60);
+                let secs = Math.floor(audio.currentTime % 60);
+                timeDisplay.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
             }, 100);
         } else {
             audio.pause();
@@ -1062,8 +1068,9 @@
         const width = rect.width;
         const percentage = x / width;
         
+        const targetTime = percentage * 15;
         if (!audio.paused || audio.currentTime > 0) {
-            audio.currentTime = percentage * (audio.duration || 15);
+            audio.currentTime = targetTime;
             const progressBar = container.querySelector('.progress-bar');
             progressBar.style.width = (percentage * 100) + '%';
         }
