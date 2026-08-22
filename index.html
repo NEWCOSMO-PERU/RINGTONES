@@ -193,7 +193,7 @@
 
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .section-title h2 {
@@ -209,6 +209,44 @@
             color: var(--text-muted);
             margin-top: 12px;
             font-size: 1.1rem;
+        }
+
+        /* --- FILTROS DE CATEGORÍAS (TABS) --- */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 50px;
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--premium-gradient);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.35);
         }
 
         .grid {
@@ -774,6 +812,14 @@
             <p>Los audios de abajo son demostraciones cortas de 15 segundos. El pack completo incluye versiones limpias y completas.</p>
         </div>
 
+        <!-- Pestañas de Categorías -->
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="filterCategory('todos', this)"><i class="fa-solid fa-layer-group"></i> Todos</button>
+            <button class="tab-btn" onclick="filterCategory('graciosos', this)"><i class="fa-solid fa-face-laugh-squint"></i> Graciosos</button>
+            <button class="tab-btn" onclick="filterCategory('anime', this)"><i class="fa-solid fa-fire-flame-curved"></i> Anime</button>
+            <button class="tab-btn" onclick="filterCategory('sonidos', this)"><i class="fa-solid fa-bell"></i> Sonidos y Alertas</button>
+        </div>
+
         <div class="grid" id="tonos-grid"></div>
     </section>
 
@@ -884,60 +930,82 @@
             splash.style.opacity = '0';
             splash.style.visibility = 'hidden';
         }, 2000);
+        
+        renderRingtones('todos');
     });
 
-    // --- RENDERIZADO DE LAS 15 TARJETAS DE TONOS ---
+    // --- BASE DE DATOS DE TONOS CON CATEGORÍAS ---
     const ringtonesData = [
-        { id: 1, title: 'Tono Premium 01', file: 'tono1.mp3', duration: '2:15 min', quality: '320 kbps' },
-        { id: 2, title: 'Tono Premium 02', file: 'tono2.mp3', duration: '1:58 min', quality: '320 kbps' },
-        { id: 3, title: 'Tono Premium 03', file: 'tono3.mp3', duration: '2:40 min', quality: '320 kbps' },
-        { id: 4, title: 'Notificación Especial', file: 'notificacion.mp3', duration: '0:08 seg', quality: 'Ultra HQ' },
-        { id: 5, title: 'Tono Premium 04', file: 'tono4.mp3', duration: '2:05 min', quality: '320 kbps' },
-        { id: 6, title: 'Tono Premium 05', file: 'tono5.mp3', duration: '1:45 min', quality: '320 kbps' },
-        { id: 7, title: 'Alarma Energética', file: 'alarma1.mp3', duration: '0:30 seg', quality: 'Ultra HQ' },
-        { id: 8, title: 'Tono Premium 06', file: 'tono6.mp3', duration: '2:22 min', quality: '320 kbps' },
-        { id: 9, title: 'Tono Premium 07', file: 'tono7.mp3', duration: '3:01 min', quality: '320 kbps' },
-        { id: 10, title: 'Notificación Synth', file: 'notificacion2.mp3', duration: '0:05 seg', quality: 'Ultra HQ' },
-        { id: 11, title: 'Tono Premium 08', file: 'tono8.mp3', duration: '1:50 min', quality: '320 kbps' },
-        { id: 12, title: 'Tono Premium 09', file: 'tono9.mp3', duration: '2:10 min', quality: '320 kbps' },
-        { id: 13, title: 'Tono Premium 10', file: 'tono10.mp3', duration: '2:35 min', quality: '320 kbps' },
-        { id: 14, title: 'Alarma Chill Out', file: 'alarma2.mp3', duration: '0:45 seg', quality: '320 kbps' },
-        { id: 15, title: 'Tono Premium 11', file: 'tono11.mp3', duration: '1:55 min', quality: '320 kbps' }
+        { id: 1, title: 'Risa de Troll Viral', category: 'graciosos', file: 'tono1.mp3', duration: '0:15 seg', quality: '320 kbps' },
+        { id: 2, title: 'Anime Opening Epic', category: 'anime', file: 'tono2.mp3', duration: '1:58 min', quality: '320 kbps' },
+        { id: 3, title: 'Alerta Futurista Sci-Fi', category: 'sonidos', file: 'tono3.mp3', duration: '0:12 seg', quality: 'Ultra HQ' },
+        { id: 4, title: 'Notificación Meme Cat', category: 'graciosos', file: 'notificacion.mp3', duration: '0:08 seg', quality: 'Ultra HQ' },
+        { id: 5, title: 'Ninja Run Theme', category: 'anime', file: 'tono4.mp3', duration: '2:05 min', quality: '320 kbps' },
+        { id: 6, title: 'Beep Cristalino Alarma', category: 'sonidos', file: 'alarma1.mp3', duration: '0:30 seg', quality: 'Ultra HQ' },
+        { id: 7, title: 'Broma Telefónica', category: 'graciosos', file: 'tono5.mp3', duration: '1:45 min', quality: '320 kbps' },
+        { id: 8, title: 'Samurai Katana Hit', category: 'anime', file: 'tono6.mp3', duration: '0:10 seg', quality: 'Ultra HQ' },
+        { id: 9, title: 'Efecto Láser Cohete', category: 'sonidos', file: 'tono7.mp3', duration: '0:06 seg', quality: 'Ultra HQ' },
+        { id: 10, title: 'Fail Trompeta Triste', category: 'graciosos', file: 'notificacion2.mp3', duration: '0:05 seg', quality: 'Ultra HQ' },
+        { id: 11, title: 'Tokyo Night Cyber', category: 'anime', file: 'tono8.mp3', duration: '1:50 min', quality: '320 kbps' },
+        { id: 12, title: 'Timbre de Recepción', category: 'sonidos', file: 'tono9.mp3', duration: '0:04 seg', quality: 'Ultra HQ' }
     ];
 
     const gridContainer = document.getElementById('tonos-grid');
 
-    ringtonesData.forEach(track => {
-        const cardHTML = `
-            <div class="card">
-                <span class="badge-preview"><i class="fa-solid fa-bolt"></i> Demo Corto</span>
-                <h3>${track.title}</h3>
-                <div class="track-info">
-                    <span><i class="fa-solid fa-clock"></i> ${track.duration}</span>
-                    <span><i class="fa-solid fa-wave-square"></i> ${track.quality}</span>
-                </div>
-                
-                <audio id="audio${track.id}" preload="none">
-                    <source src="audio/${track.file}" type="audio/mpeg">
-                </audio>
-                
-                <div class="custom-player">
-                    <button class="play-btn" onclick="togglePlay('audio${track.id}', this)"><i class="fa-solid fa-play"></i></button>
-                    <div class="player-timeline">
-                        <div class="progress-bar-container" onclick="seekAudio('audio${track.id}', event)">
-                            <div class="progress-bar" id="progress${track.id}"></div>
-                        </div>
-                        <div class="time-meta">
-                            <span id="time${track.id}">0:00</span>
-                            <span>${track.id === 4 || track.id === 10 ? track.duration.split(' ')[0] : '0:15'}</span>
+    function renderRingtones(category) {
+        gridContainer.innerHTML = '';
+        
+        const filteredData = category === 'todos' 
+            ? ringtonesData 
+            : ringtonesData.filter(track => track.category === category);
+
+        filteredData.forEach(track => {
+            const cardHTML = `
+                <div class="card">
+                    <span class="badge-preview"><i class="fa-solid fa-bolt"></i> ${track.category.toUpperCase()}</span>
+                    <h3>${track.title}</h3>
+                    <div class="track-info">
+                        <span><i class="fa-solid fa-clock"></i> ${track.duration}</span>
+                        <span><i class="fa-solid fa-wave-square"></i> ${track.quality}</span>
+                    </div>
+                    
+                    <audio id="audio${track.id}" preload="none">
+                        <source src="audio/${track.file}" type="audio/mpeg">
+                    </audio>
+                    
+                    <div class="custom-player">
+                        <button class="play-btn" onclick="togglePlay('audio${track.id}', this)"><i class="fa-solid fa-play"></i></button>
+                        <div class="player-timeline">
+                            <div class="progress-bar-container" onclick="seekAudio('audio${track.id}', event)">
+                                <div class="progress-bar" id="progress${track.id}"></div>
+                            </div>
+                            <div class="time-meta">
+                                <span id="time${track.id}">0:00</span>
+                                <span>${track.duration}</span>
+                            </div>
                         </div>
                     </div>
+                    <a href="#descarga-vip" class="lock-btn"><i class="fa-solid fa-unlock"></i> Desbloquear Tono</a>
                 </div>
-                <a href="#descarga-vip" class="lock-btn"><i class="fa-solid fa-unlock"></i> Desbloquear Tono</a>
-            </div>
-        `;
-        gridContainer.insertAdjacentHTML('beforeend', cardHTML);
-    });
+            `;
+            gridContainer.insertAdjacentHTML('beforeend', cardHTML);
+        });
+    }
+
+    function filterCategory(category, btn) {
+        // Cambiar estado activo de los botones
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Detener audio activo si se cambia de categoría
+        if (currentAudio) {
+            currentAudio.pause();
+            if (currentButton) currentButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+            clearInterval(progressInterval);
+        }
+
+        renderRingtones(category);
+    }
 
     // --- CONTROLADOR DE AUDIO ---
     let currentAudio = null;
