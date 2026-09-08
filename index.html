@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TONOS PREMIUM</title>
+    <title>TONOS PREMIUM - Descargas HD</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -913,6 +913,7 @@
             </div>
 
             <div class="qr-box">
+                <h3>YAPE / PLIN</h3>
                 <img src="qr-yape.png" class="qr" alt="Código QR de Pago Yape">
             </div>
 
@@ -936,6 +937,16 @@
         </div>
 
         <div class="faq-container">
+            <div class="faq">
+                <button class="faq-trigger" onclick="toggleFaq(this)">
+                    ¿Cómo configurar el tono para llamadas en mi celular?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-content">
+                    <p><strong>En Android:</strong> Ve a Ajustes > Sonido y vibración > Tono de llamada, selecciona el archivo descargado desde tu almacenamiento y guárdalo.<br><strong>En iPhone:</strong> Sincroniza el tono convertido a formato .m4r mediante iTunes/Finder en tu PC, o utiliza la app GarageBand directamente en tu dispositivo para asignarlo como tono predeterminado.</p>
+                </div>
+            </div>
+
             <div class="faq">
                 <button class="faq-trigger" onclick="toggleFaq(this)">
                     ¿El enlace de Mega incluye todos los tonos escuchados arriba?
@@ -1014,9 +1025,9 @@
         updateRingtonesList();
     });
 
-    // --- BASE DE DATOS DE TONOS (Ampliable para probar la paginación de 12 en 12) ---
+    // --- BASE DE DATOS DE TONOS (12 por página) ---
     const ringtonesData = [
-        { id: 1, title: 'El Grillo', category: 'graciosos', file: 'tono1.mp3', quality: '320 kbps' },
+        { id: 1, title: 'El Grillo', category: 'graciosos', file: 'El Grillo.mp3', quality: '320 kbps' },
         { id: 2, title: 'Anime Opening Epic', category: 'anime', file: 'tono2.mp3', quality: '320 kbps' },
         { id: 3, title: 'Alerta Futurista Sci-Fi', category: 'sonidos', file: 'tono3.mp3', quality: 'Ultra HQ' },
         { id: 4, title: 'Notificación Meme Cat', category: 'graciosos', file: 'notificacion.mp3', quality: 'Ultra HQ' },
@@ -1028,7 +1039,6 @@
         { id: 10, title: 'Fail Trompeta Triste', category: 'graciosos', file: 'notificacion2.mp3', quality: 'Ultra HQ' },
         { id: 11, title: 'Tokyo Night Cyber', category: 'anime', file: 'tono8.mp3', quality: '320 kbps' },
         { id: 12, title: 'Timbre de Recepción', category: 'sonidos', file: 'tono9.mp3', quality: 'Ultra HQ' },
-        // Elementos extra para verificar que la paginación separa en bloques de 12 correctamente
         { id: 13, title: 'Risa Malvada Mini', category: 'graciosos', file: 'tono5.mp3', quality: '320 kbps' },
         { id: 14, title: 'Power Up Anime', category: 'anime', file: 'tono2.mp3', quality: '320 kbps' },
         { id: 15, title: 'Campana Zen', category: 'sonidos', file: 'tono3.mp3', quality: 'Ultra HQ' }
@@ -1093,12 +1103,9 @@
             gridContainer.insertAdjacentHTML('beforeend', cardHTML);
         });
 
-        // Actualizar controles de paginación
         document.getElementById('page-indicator').innerText = `Página ${currentPage} de ${totalPages}`;
         document.getElementById('prev-btn').disabled = currentPage === 1;
         document.getElementById('next-btn').disabled = currentPage === totalPages || totalPages === 0;
-        
-        // Ocultar paginación si hay 1 sola página o menos
         document.getElementById('pagination-controls').style.display = totalPages <= 1 ? 'none' : 'flex';
     }
 
