@@ -25,8 +25,8 @@
             --border: rgba(0, 242, 254, 0.25);
             --border-hover: rgba(0, 242, 254, 0.6);
             --success: #10b981;
-            --radius-lg: 24px;
-            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-md: 12px;
             --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -128,7 +128,6 @@
             position: relative;
         }
 
-        /* Logo de Header Más Grande y Brillante */
         .brand-logo {
             width: 220px;
             height: auto;
@@ -216,17 +215,17 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .tab-btn {
             background: var(--bg-card);
             border: 1px solid var(--border);
             color: var(--text-muted);
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: var(--transition);
             display: inline-flex;
@@ -251,17 +250,17 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
         }
 
-        /* --- TARJETAS --- */
+        /* --- TARJETAS MÁS PEQUEÑAS Y MODERNAS --- */
         .card {
             background: var(--bg-card);
             background-image: var(--card-gradient);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            padding: 30px;
+            padding: 20px;
             border-radius: var(--radius-lg);
             border: 1px solid var(--border);
             transition: var(--transition);
@@ -269,96 +268,97 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
         }
 
         .card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-5px);
             border-color: var(--border-hover);
-            box-shadow: 0 20px 45px rgba(0, 242, 254, 0.25), 0 0 25px rgba(157, 78, 221, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.2), 0 0 20px rgba(157, 78, 221, 0.15);
         }
 
         .badge-preview {
             position: absolute;
-            top: 25px;
-            right: 25px;
+            top: 16px;
+            right: 16px;
             background: rgba(0, 242, 254, 0.12);
             color: var(--primary);
-            padding: 5px 14px;
-            border-radius: 30px;
-            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.68rem;
             font-weight: 600;
             border: 1px solid rgba(0, 242, 254, 0.3);
             letter-spacing: 0.5px;
         }
 
         .card h3 {
-            margin-top: 10px;
-            margin-bottom: 8px;
-            font-size: 1.35rem;
+            margin-top: 4px;
+            margin-bottom: 6px;
+            font-size: 1.15rem;
             font-weight: 600;
             color: #fff;
+            padding-right: 70px;
         }
 
         .track-info {
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             color: var(--text-muted);
-            margin-bottom: 22px;
+            margin-bottom: 14px;
             display: flex;
-            gap: 18px;
+            gap: 14px;
         }
 
         .track-info span i {
             color: var(--accent);
-            margin-right: 6px;
+            margin-right: 4px;
         }
 
-        /* --- REPRODUCTOR --- */
+        /* --- REPRODUCTOR COMPACTO --- */
         .custom-player {
             background: var(--bg-input);
-            padding: 14px 18px;
+            padding: 10px 14px;
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 10px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 12px;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
         }
 
         .play-btn {
-            width: 42px;
-            height: 42px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: var(--primary);
             border: none;
             color: #020617;
-            font-size: 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
             flex-shrink: 0;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
         }
 
         .play-btn:hover {
             background: #fff;
-            transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
 
         .player-timeline {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
         }
 
         .progress-bar-container {
             width: 100%;
-            height: 7px;
+            height: 5px;
             background: #1e293b;
             border-radius: 10px;
             cursor: pointer;
@@ -374,13 +374,13 @@
             position: absolute;
             top: 0; left: 0;
             transition: width 0.1s linear;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+            box-shadow: 0 0 8px rgba(0, 242, 254, 0.6);
         }
 
         .time-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
             font-family: monospace;
         }
@@ -389,16 +389,16 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             width: 100%;
-            margin-top: 15px;
-            padding: 14px;
+            margin-top: 10px;
+            padding: 10px;
             background: rgba(255, 255, 255, 0.03);
             color: #e2e8f0;
             text-decoration: none;
             border-radius: var(--radius-md);
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.82rem;
             transition: var(--transition);
             border: 1px solid var(--border);
         }
@@ -407,25 +407,25 @@
             background: var(--premium-gradient);
             color: #fff;
             border-color: transparent;
-            box-shadow: 0 5px 20px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
         }
 
-        /* --- SECCIÓN ADQUISICIÓN VIP --- */
+        /* --- SECCIÓN ADQUISICIÓN VIP (RESUMIDA Y MODERNA) --- */
         .premium {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.95) 100%);
             border: 1px solid rgba(157, 78, 221, 0.5);
-            border-radius: 32px;
-            padding: 60px 40px;
+            border-radius: 28px;
+            padding: 40px 30px;
             text-align: center;
-            max-width: 720px;
+            max-width: 600px;
             margin: 0 auto;
             position: relative;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 35px rgba(157, 78, 221, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(157, 78, 221, 0.2);
             backdrop-filter: blur(20px);
         }
 
         .premium h2 {
-            font-size: 2.3rem;
+            font-size: 1.8rem;
             color: var(--primary);
             font-weight: 700;
             letter-spacing: -0.5px;
@@ -434,38 +434,55 @@
 
         .premium p {
             color: var(--text-muted);
-            margin-top: 12px;
-            font-size: 1.05rem;
+            margin-top: 8px;
+            font-size: 0.95rem;
         }
 
         .precio {
-            font-size: 5rem;
+            font-size: 3.5rem;
             font-weight: 800;
             color: var(--success);
-            margin: 20px 0;
+            margin: 15px 0 5px 0;
             line-height: 1;
-            text-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
-            letter-spacing: -2px;
+            text-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+            letter-spacing: -1.5px;
         }
 
         .precio span {
-            font-size: 1rem;
+            font-size: 0.88rem;
             color: var(--text-muted);
             font-weight: 400;
             display: block;
-            margin-top: 8px;
+            margin-top: 4px;
             letter-spacing: normal;
         }
 
+        .qr-box {
+            background: rgba(157, 78, 221, 0.15);
+            padding: 16px;
+            border-radius: 18px;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            display: inline-block;
+            margin: 20px 0 15px 0;
+        }
+
+        .qr-box h3 {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
         .qr {
-            width: 210px;
+            width: 160px;
             max-width: 100%;
             background: white;
-            padding: 14px;
-            border-radius: 20px;
+            padding: 10px;
+            border-radius: 14px;
             margin: 0 auto;
             display: block;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 25px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4), 0 0 20px rgba(0, 242, 254, 0.2);
             transition: var(--transition);
         }
 
@@ -473,49 +490,50 @@
             transform: scale(1.03);
         }
 
-        .steps {
-            text-align: left;
-            max-width: 440px;
-            margin: 35px auto;
-            color: #e2e8f0;
-        }
-
-        .steps li {
-            margin-bottom: 16px;
-            list-style: none;
+        .steps-mini {
             display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            font-size: 0.98rem;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 15px 0 25px 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
-        .steps li i {
+        .steps-mini span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .steps-mini span i {
             color: var(--success);
-            margin-top: 4px;
-            font-size: 1.1rem;
         }
 
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             background: #25D366;
-            padding: 18px 45px;
+            padding: 15px 35px;
             color: white;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.05rem;
+            font-size: 0.98rem;
             border-radius: 50px;
-            margin-top: 15px;
             transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
         }
 
         .whatsapp-btn:hover {
             transform: translateY(-3px) scale(1.02);
             background: #22bf5b;
-            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.45);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.45);
         }
 
         /* --- PREGUNTAS FRECUENTES --- */
@@ -781,9 +799,9 @@
         @media(max-width:768px){
             header h1 { font-size: 2.8rem; }
             .section-title h2 { font-size: 2rem; }
-            .premium { padding: 45px 20px; }
-            .premium h2 { font-size: 1.8rem; }
-            .precio { font-size: 4rem; }
+            .premium { padding: 35px 20px; }
+            .premium h2 { font-size: 1.5rem; }
+            .precio { font-size: 3rem; }
             .whatsapp-btn { width: 100%; }
         }
 
@@ -844,24 +862,23 @@
     <section id="descarga-vip">
         <div class="premium">
             <h2><i class="fa-solid fa-star" style="color: var(--accent);"></i> ACCESO ILIMITADO VIP</h2>
-            <p>Con un único pago obtienes tu <strong>enlace privado de Mega</strong> para descargar todos los tonos completos de la web de manera instantánea.</p>
+            <p>Obtén el <strong>enlace de Mega</strong> con todos los tonos completos de la web en calidad HD.</p>
             
             <div class="precio">
                 S/ 10
-                <span>Paga una vez, descarga para siempre</span>
+                <span>Pago único - Descarga para siempre</span>
             </div>
 
-            <div style="background: rgba(157, 78, 221, 0.2); padding: 20px; border-radius: 20px; border: 1px solid rgba(0, 242, 254, 0.4); display: inline-block; margin: 25px 0;">
-                <h3 style="color: #ffffff; font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; letter-spacing: 0.5px; text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);">FULL TONOS PREMIUM</h3>
+            <div class="qr-box">
+                <h3>YAPE / PLIN</h3>
                 <img src="qr-yape.png" class="qr" alt="Código QR de Pago Yape">
             </div>
 
-            <ul class="steps">
-                <li><i class="fa-solid fa-circle-check"></i> Escanea el código QR y realiza el pago de S/ 10.</li>
-                <li><i class="fa-solid fa-circle-check"></i> Toma una captura de pantalla del comprobante nítido.</li>
-                <li><i class="fa-solid fa-circle-check"></i> Haz clic abajo para enviárnosla por WhatsApp.</li>
-                <li><i class="fa-solid fa-circle-check"></i> Recibirás tu enlace de descarga seguro inmediatamente.</li>
-            </ul>
+            <div class="steps-mini">
+                <span><i class="fa-solid fa-circle-check"></i> Escanea y paga S/ 10</span>
+                <span><i class="fa-solid fa-circle-check"></i> Captura el comprobante</span>
+                <span><i class="fa-solid fa-circle-check"></i> Recibe tu enlace al instante</span>
+            </div>
 
             <a class="whatsapp-btn" 
                href="https://wa.me/51907546093?text=Hola!%20Ya%20yape%C3%A9%20los%20S/%2010%20de%20los%20Tonos%20Premium.%20Aqu%C3%AD%20est%C3%A1%20mi%20captura,%20por%20favor%20env%C3%ADame%20el%20enlace%20de%20descarga%20completo."
@@ -955,7 +972,7 @@
         renderRingtones('todos');
     });
 
-    // --- BASE DE DATOS DE TONOS (Apunta a la carpeta /audio/ de tu GitHub) ---
+    // --- BASE DE DATOS DE TONOS ---
     const ringtonesData = [
         { id: 1, title: 'El Grillo', category: 'graciosos', file: 'El Grillo.mp3', quality: '320 kbps' },
         { id: 2, title: 'Anime Opening Epic', category: 'anime', file: 'tono2.mp3', quality: '320 kbps' },
@@ -986,7 +1003,7 @@
                     <span class="badge-preview"><i class="fa-solid fa-bolt"></i> ${track.category.toUpperCase()}</span>
                     <h3>${track.title}</h3>
                     <div class="track-info">
-                        <span><i class="fa-solid fa-clock"></i> Muestra 0:15s</span>
+                        <span><i class="fa-solid fa-clock"></i> 0:15s</span>
                         <span><i class="fa-solid fa-wave-square"></i> ${track.quality}</span>
                     </div>
                     
