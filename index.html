@@ -254,6 +254,49 @@
             gap: 20px;
         }
 
+        /* --- PAGINACIÓN --- */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .page-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .page-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--premium-gradient);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        #page-indicator {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
         /* --- TARJETAS MÁS PEQUEÑAS Y MODERNAS --- */
         .card {
             background: var(--bg-card);
@@ -430,12 +473,6 @@
             font-weight: 700;
             letter-spacing: -0.5px;
             text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
-        }
-
-        .premium p {
-            color: var(--text-muted);
-            margin-top: 8px;
-            font-size: 0.95rem;
         }
 
         .precio {
@@ -857,12 +894,18 @@
         </div>
 
         <div class="grid" id="tonos-grid"></div>
+
+        <!-- Controles de Paginación -->
+        <div class="pagination-container" id="pagination-controls">
+            <button class="page-btn" id="prev-btn" onclick="changePage(-1)"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+            <span id="page-indicator">Página 1 de 1</span>
+            <button class="page-btn" id="next-btn" onclick="changePage(1)">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
     </section>
 
     <section id="descarga-vip">
         <div class="premium">
-            <h2><i class="fa-solid fa-star" style="color: var(--accent);"></i> ACCESO ILIMITADO VIP</h2>
-            <p>Obtén el <strong>enlace de Mega</strong> con todos los tonos completos de la web en calidad HD.</p>
+            <h2><i class="fa-solid fa-star" style="color: var(--accent);"></i> ACCESO VIP</h2>
             
             <div class="precio">
                 S/ 10
@@ -969,10 +1012,10 @@
             splash.style.visibility = 'hidden';
         }, 2000);
         
-        renderRingtones('todos');
+        updateRingtonesList();
     });
 
-    // --- BASE DE DATOS DE TONOS ---
+    // --- BASE DE DATOS DE TONOS (Ampliable para probar la paginación de 12 en 12) ---
     const ringtonesData = [
         { id: 1, title: 'El Grillo', category: 'graciosos', file: 'El Grillo.mp3', quality: '320 kbps' },
         { id: 2, title: 'Anime Opening Epic', category: 'anime', file: 'tono2.mp3', quality: '320 kbps' },
@@ -985,19 +1028,41 @@
         { id: 9, title: 'Efecto Láser Cohete', category: 'sonidos', file: 'tono7.mp3', quality: 'Ultra HQ' },
         { id: 10, title: 'Fail Trompeta Triste', category: 'graciosos', file: 'notificacion2.mp3', quality: 'Ultra HQ' },
         { id: 11, title: 'Tokyo Night Cyber', category: 'anime', file: 'tono8.mp3', quality: '320 kbps' },
-        { id: 12, title: 'Timbre de Recepción', category: 'sonidos', file: 'tono9.mp3', quality: 'Ultra HQ' }
+        { id: 12, title: 'Timbre de Recepción', category: 'sonidos', file: 'tono9.mp3', quality: 'Ultra HQ' },
+        // Elementos extra para verificar que la paginación separa en bloques de 12 correctamente
+        { id: 13, title: 'Risa Malvada Mini', category: 'graciosos', file: 'tono5.mp3', quality: '320 kbps' },
+        { id: 14, title: 'Power Up Anime', category: 'anime', file: 'tono2.mp3', quality: '320 kbps' },
+        { id: 15, title: 'Campana Zen', category: 'sonidos', file: 'tono3.mp3', quality: 'Ultra HQ' }
     ];
+
+    let currentPage = 1;
+    const itemsPerPage = 12;
+    let currentCategory = 'todos';
 
     const gridContainer = document.getElementById('tonos-grid');
 
-    function renderRingtones(category) {
-        gridContainer.innerHTML = '';
-        
-        const filteredData = category === 'todos' 
-            ? ringtonesData 
-            : ringtonesData.filter(track => track.category === category);
+    function updateRingtonesList() {
+        if (currentAudio) {
+            currentAudio.pause();
+            if (currentButton) currentButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+            clearInterval(progressInterval);
+        }
 
-        filteredData.forEach(track => {
+        const filteredData = currentCategory === 'todos' 
+            ? ringtonesData 
+            : ringtonesData.filter(track => track.category === currentCategory);
+
+        const totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+        if (currentPage < 1) currentPage = 1;
+
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const paginatedData = filteredData.slice(start, end);
+
+        gridContainer.innerHTML = '';
+
+        paginatedData.forEach(track => {
             const cardHTML = `
                 <div class="card">
                     <span class="badge-preview"><i class="fa-solid fa-bolt"></i> ${track.category.toUpperCase()}</span>
@@ -1028,19 +1093,28 @@
             `;
             gridContainer.insertAdjacentHTML('beforeend', cardHTML);
         });
+
+        // Actualizar controles de paginación
+        document.getElementById('page-indicator').innerText = `Página ${currentPage} de ${totalPages}`;
+        document.getElementById('prev-btn').disabled = currentPage === 1;
+        document.getElementById('next-btn').disabled = currentPage === totalPages || totalPages === 0;
+        
+        // Ocultar paginación si hay 1 sola página o menos
+        document.getElementById('pagination-controls').style.display = totalPages <= 1 ? 'none' : 'flex';
     }
 
     function filterCategory(category, btn) {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        currentCategory = category;
+        currentPage = 1;
+        updateRingtonesList();
+    }
 
-        if (currentAudio) {
-            currentAudio.pause();
-            if (currentButton) currentButton.innerHTML = '<i class="fa-solid fa-play"></i>';
-            clearInterval(progressInterval);
-        }
-
-        renderRingtones(category);
+    function changePage(direction) {
+        currentPage += direction;
+        updateRingtonesList();
+        document.getElementById('tonos').scrollIntoView({ behavior: 'smooth' });
     }
 
     // --- CONTROLADOR DE AUDIO ---
